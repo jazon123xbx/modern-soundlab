@@ -60,7 +60,8 @@
 #binary-output {
   margin-bottom: 0;
   padding: 14px;
-  overflow-wrap: anywhere;
+  overflow-x: auto;
+  white-space: nowrap;
   border-radius: 8px;
   background: var(--navy-950);
   color: var(--cyan);
