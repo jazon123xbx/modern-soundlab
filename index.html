@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern SoundLab | Sound-to-Binary Converter</title>
+</head>
+<body>
+  <!-- homepage -->
+  <header id="site-header">
+    <h1>Modern SoundLab</h1>
+    <p>See how sound becomes binary code.</p>
+  </header>
+
+  <main id="homepage">
+    <!-- converter -->
+    <section id="converter-section" aria-labelledby="converter-title">
+      <h2 id="converter-title">Sound-to-Binary Converter</h2>
+      <p>Enter simple sound values, then convert them into binary numbers.</p>
+
+      <form id="converter-form">
+        <!-- input fields -->
+        <fieldset>
+          <legend>Sound Settings</legend>
+
+          <p>
+            <label for="sound-name">1. Sound Name</label>
+            <input id="sound-name" name="sound-name" type="text" placeholder="Example: Hand Clap">
+          </p>
+
+          <p>
+            <label for="sample-rate">2. Sample Rate (Hz)</label>
+            <input id="sample-rate" name="sample-rate" type="number" placeholder="Example: 44100">
+          </p>
+
+          <p>
+            <label for="bit-depth">3. Bit Depth</label>
+            <input id="bit-depth" name="bit-depth" type="number" placeholder="Example: 16">
+          </p>
+
+          <p>
+            <label for="sample-value">4. Sample Value</label>
+            <input id="sample-value" name="sample-value" type="number" placeholder="Example: 25">
+          </p>
+        </fieldset>
+
+        <button id="convert-button" type="button">Convert to Binary</button>
+        <button id="play-button" type="button">Play Sound</button>
+      </form>
+    </section>
+
+    <!-- waveform -->
+    <section id="waveform-section" aria-labelledby="waveform-title">
+      <h2 id="waveform-title">Sound Wave</h2>
+      <canvas id="waveform-canvas" width="600" height="200">
+        Your browser does not support the waveform display.
+      </canvas>
+    </section>
+
+    <!-- wave facts -->
+    <section id="wave-facts-section" aria-labelledby="wave-facts-title">
+      <h2 id="wave-facts-title">Wave Facts</h2>
+      <dl id="wave-facts">
+        <dt>Sample Rate</dt>
+        <dd id="sample-rate-fact">Waiting for input</dd>
+        <dt>Bit Depth</dt>
+        <dd id="bit-depth-fact">Waiting for input</dd>
+        <dt>Sample Value</dt>
+        <dd id="sample-value-fact">Waiting for input</dd>
+      </dl>
+    </section>
+
+    <!-- sample table -->
+    <section id="sample-table-section" aria-labelledby="sample-table-title">
+      <h2 id="sample-table-title">Sound Samples</h2>
+      <table id="sample-table">
+        <caption>Examples of sound samples and binary values</caption>
+        <thead>
+          <tr>
+            <th scope="col">Sample Number</th>
+            <th scope="col">Sound Value</th>
+            <th scope="col">Binary Value</th>
+          </tr>
+        </thead>
+        <tbody id="sample-table-body">
+          <tr>
+            <td>1</td>
+            <td>Waiting for input</td>
+            <td>Waiting for conversion</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- binary output -->
+    <section id="binary-output-section" aria-labelledby="binary-output-title">
+      <h2 id="binary-output-title">Binary Output</h2>
+      <p id="binary-output">Your binary code will appear here.</p>
+    </section>
+
+    <!-- test results -->
+    <section id="test-results-section" aria-labelledby="test-results-title">
+      <h2 id="test-results-title">Test Results</h2>
+      <p id="test-results">No test has been run yet.</p>
+    </section>
+
+    <!-- explanation -->
+    <section id="explain-section" aria-labelledby="explain-title">
+      <h2 id="explain-title">Explain It</h2>
+      <p>Sound is a wave. A computer measures parts of that wave as numbers.</p>
+      <p>Binary uses only 0 and 1, so the computer changes each sound number into binary code.</p>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer id="site-footer">
+    <p>Modern SoundLab</p>
+    <p>John Lin C. Redido | BSCS-3</p>
+  </footer>
+</body>
+</html>
