@@ -1,0 +1,37 @@
+/* page header */
+#site-header {
+  padding: 48px 16px 40px;
+  text-align: center;
+  background: var(--navy-900);
+  border-bottom: 1px solid var(--border);
+}
+
+#site-header h1 {
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.04em;
+}
+
+#site-header p {
+  margin-bottom: 0;
+  color: var(--cyan);
+  font-size: 1.1rem;
+}
+
+/* footer */
+#site-footer {
+  padding: 24px 16px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--navy-900);
+}
+
+#site-footer p {
+  margin-bottom: 4px;
+}
+
+#site-footer p:last-child {
+  margin-bottom: 0;
+  color: var(--text);
+}

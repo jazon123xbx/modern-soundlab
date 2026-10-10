@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modern SoundLab | Sound-to-Binary Converter</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/homepage.css">
+  <link rel="stylesheet" href="css/converter.css">
+  <link rel="stylesheet" href="css/results.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <!-- homepage -->
@@ -24,23 +30,23 @@
           <legend>Sound Settings</legend>
 
           <p>
-            <label for="sound-name">1. Sound Name</label>
-            <input id="sound-name" name="sound-name" type="text" placeholder="Example: Hand Clap">
+            <label for="frequency">1. Frequency (Hz)</label>
+            <input id="frequency" name="frequency" type="number" value="440" min="1" step="1">
           </p>
 
           <p>
-            <label for="sample-rate">2. Sample Rate (Hz)</label>
-            <input id="sample-rate" name="sample-rate" type="number" placeholder="Example: 44100">
+            <label for="amplitude">2. Amplitude (0 to 1)</label>
+            <input id="amplitude" name="amplitude" type="number" value="0.8" min="0" max="1" step="0.1">
           </p>
 
           <p>
-            <label for="bit-depth">3. Bit Depth</label>
-            <input id="bit-depth" name="bit-depth" type="number" placeholder="Example: 16">
+            <label for="number-of-samples">3. Number of Samples (2 to 64)</label>
+            <input id="number-of-samples" name="number-of-samples" type="number" value="8" min="2" max="64" step="1">
           </p>
 
           <p>
-            <label for="sample-value">4. Sample Value</label>
-            <input id="sample-value" name="sample-value" type="number" placeholder="Example: 25">
+            <label for="bits-per-sample">4. Bits per Sample (1 to 8)</label>
+            <input id="bits-per-sample" name="bits-per-sample" type="number" value="3" min="1" max="8" step="1">
           </p>
         </fieldset>
 
@@ -60,13 +66,16 @@
     <!-- wave facts -->
     <section id="wave-facts-section" aria-labelledby="wave-facts-title">
       <h2 id="wave-facts-title">Wave Facts</h2>
+      <p>Wavelength uses 343 m/s divided by frequency.</p>
       <dl id="wave-facts">
-        <dt>Sample Rate</dt>
-        <dd id="sample-rate-fact">Waiting for input</dd>
-        <dt>Bit Depth</dt>
-        <dd id="bit-depth-fact">Waiting for input</dd>
-        <dt>Sample Value</dt>
-        <dd id="sample-value-fact">Waiting for input</dd>
+        <dt>Amplitude</dt>
+        <dd id="amplitude-fact">Waiting for conversion</dd>
+        <dt>Frequency</dt>
+        <dd id="frequency-fact">Waiting for conversion</dd>
+        <dt>Period (ms)</dt>
+        <dd id="period-fact">Waiting for conversion</dd>
+        <dt>Wavelength (m or cm)</dt>
+        <dd id="wavelength-fact">Waiting for conversion</dd>
       </dl>
     </section>
 
@@ -74,18 +83,22 @@
     <section id="sample-table-section" aria-labelledby="sample-table-title">
       <h2 id="sample-table-title">Sound Samples</h2>
       <table id="sample-table">
-        <caption>Examples of sound samples and binary values</caption>
+        <caption>Wave samples and their binary levels</caption>
         <thead>
           <tr>
-            <th scope="col">Sample Number</th>
-            <th scope="col">Sound Value</th>
-            <th scope="col">Binary Value</th>
+            <th scope="col">Sample #</th>
+            <th scope="col">Time (ms)</th>
+            <th scope="col">Amplitude</th>
+            <th scope="col">Level</th>
+            <th scope="col">Binary</th>
           </tr>
         </thead>
         <tbody id="sample-table-body">
           <tr>
             <td>1</td>
-            <td>Waiting for input</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
             <td>Waiting for conversion</td>
           </tr>
         </tbody>
@@ -95,20 +108,85 @@
     <!-- binary output -->
     <section id="binary-output-section" aria-labelledby="binary-output-title">
       <h2 id="binary-output-title">Binary Output</h2>
-      <p id="binary-output">Your binary code will appear here.</p>
+      <p id="binary-output">Complete Binary Sequence: Waiting for conversion</p>
+      <p id="total-bits">Total Number of Bits: Waiting for conversion</p>
     </section>
 
     <!-- test results -->
     <section id="test-results-section" aria-labelledby="test-results-title">
       <h2 id="test-results-title">Test Results</h2>
-      <p id="test-results">No test has been run yet.</p>
+      <table id="test-results">
+        <caption>Assignment test settings and future results</caption>
+        <thead>
+          <tr>
+            <th scope="col">Test</th>
+            <th scope="col">Frequency (Hz)</th>
+            <th scope="col">Amplitude</th>
+            <th scope="col">Samples</th>
+            <th scope="col">Bits</th>
+            <th scope="col">Period</th>
+            <th scope="col">Wavelength</th>
+            <th scope="col">Total Bits</th>
+            <th scope="col">Binary Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">A</th>
+            <td>440</td>
+            <td>0.8</td>
+            <td>8</td>
+            <td>3</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+          </tr>
+          <tr>
+            <th scope="row">B</th>
+            <td>200</td>
+            <td>0.5</td>
+            <td>6</td>
+            <td>4</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+          </tr>
+          <tr>
+            <th scope="row">C</th>
+            <td>500</td>
+            <td>0.9</td>
+            <td>5</td>
+            <td>3</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+            <td>Waiting for conversion</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <!-- explanation -->
     <section id="explain-section" aria-labelledby="explain-title">
       <h2 id="explain-title">Explain It</h2>
-      <p>Sound is a wave. A computer measures parts of that wave as numbers.</p>
-      <p>Binary uses only 0 and 1, so the computer changes each sound number into binary code.</p>
+      <article class="explanation-item">
+        <h3>Question 1: How does the app change a sound wave into binary?</h3>
+        <p>First, it takes samples of the wave. Next, it rounds each sample to a level. Lastly, it changes each level into binary.</p>
+      </article>
+      <article class="explanation-item">
+        <h3>Question 2: For Test A, which gives more detail: 2 bits or 6 bits?</h3>
+        <p>6 bits gives more detail because it has 64 possible levels. With 2 bits, there are only 4 levels.</p>
+      </article>
+      <article class="explanation-item">
+        <h3>Question 3: Which test has the longest wavelength?</h3>
+        <p>Test B has the longest wavelength because its frequency is the lowest (200 Hz). When frequency goes up, wavelength goes down.</p>
+      </article>
+      <article class="explanation-item">
+        <h3>Question 4: What was the hardest stage to build, and how did you fix it?</h3>
+        <p>The hardest part was converting the wave samples into the correct binary numbers because even a small mistake could change the result. I fixed it by checking the formula step by step and comparing my results with the given examples.</p>
+      </article>
     </section>
   </main>
 

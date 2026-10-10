@@ -1,0 +1,110 @@
+/* wave facts */
+#wave-facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 18px;
+  margin: 0;
+}
+
+#wave-facts dt {
+  color: var(--cyan);
+  font-weight: bold;
+}
+
+#wave-facts dd {
+  margin: 0;
+  color: var(--text);
+}
+
+/* sample table */
+#sample-table-section,
+#test-results-section {
+  overflow-x: auto;
+}
+
+#sample-table,
+#test-results {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+}
+
+#sample-table {
+  min-width: 600px;
+}
+
+#sample-table caption,
+#test-results caption {
+  margin-bottom: 12px;
+  text-align: left;
+  color: var(--muted-text);
+}
+
+#sample-table th,
+#sample-table td,
+#test-results th,
+#test-results td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+#sample-table th,
+#test-results th {
+  color: var(--cyan);
+  background: var(--navy-800);
+}
+
+/* output panels */
+#binary-output {
+  margin-bottom: 0;
+  padding: 14px;
+  overflow-wrap: anywhere;
+  border-radius: 8px;
+  background: var(--navy-950);
+  color: var(--cyan);
+  font-family: Consolas, "Courier New", monospace;
+}
+
+#total-bits {
+  margin: 12px 0 0;
+  color: var(--text);
+}
+
+#test-results {
+  min-width: 900px;
+}
+
+#test-results-section {
+  grid-column: 1 / -1;
+}
+
+#binary-output-section,
+#sample-table-section {
+  grid-column: 1 / -1;
+}
+
+#explain-section {
+  grid-column: 1 / -1;
+}
+
+#explain-section p:last-child {
+  margin-bottom: 0;
+}
+
+.explanation-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.explanation-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.explanation-item h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 1rem;
+}

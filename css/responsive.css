@@ -1,0 +1,52 @@
+/* tablet layout */
+@media (max-width: 760px) {
+  #homepage {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  #homepage > section,
+  #converter-section,
+  #waveform-section,
+  #binary-output-section,
+  #sample-table-section,
+  #test-results-section,
+  #explain-section {
+    grid-column: auto;
+  }
+}
+
+/* mobile layout */
+@media (max-width: 520px) {
+  #site-header {
+    padding: 36px 16px 30px;
+  }
+
+  #homepage {
+    width: min(100% - 24px, 1100px);
+    margin: 20px auto;
+  }
+
+  #homepage > section {
+    padding: 18px;
+  }
+
+  #converter-form fieldset {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  #converter-form button {
+    display: block;
+    width: 100%;
+    margin: 10px 0 0;
+  }
+
+  #waveform-canvas {
+    min-height: 150px;
+  }
+
+  #sample-table {
+    min-width: 600px;
+  }
+}

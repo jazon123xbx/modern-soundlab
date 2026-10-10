@@ -1,0 +1,85 @@
+/* converter form */
+#converter-section,
+#waveform-section {
+  grid-column: 1 / -1;
+}
+
+#converter-form fieldset {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+#converter-form legend {
+  padding: 0 8px;
+  color: var(--cyan);
+  font-weight: bold;
+}
+
+#converter-form fieldset {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#converter-form fieldset p {
+  margin: 0;
+}
+
+#converter-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+  font-weight: bold;
+}
+
+#converter-form input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--navy-950);
+  color: var(--text);
+}
+
+#converter-form input::placeholder {
+  color: #7f9ab4;
+}
+
+/* buttons */
+#converter-form button {
+  min-width: 145px;
+  margin-right: 10px;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#convert-button {
+  background: var(--cyan);
+  color: var(--navy-950);
+}
+
+#converter-form #play-button {
+  background: var(--navy-700);
+  border-color: var(--cyan);
+  color: var(--text);
+}
+
+#converter-form button:hover {
+  filter: brightness(1.1);
+}
+
+/* waveform */
+#waveform-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  border: 1px dashed var(--cyan);
+  border-radius: 10px;
+  background: var(--navy-950);
+}
