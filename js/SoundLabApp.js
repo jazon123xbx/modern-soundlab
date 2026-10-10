@@ -1,14 +1,17 @@
 export default class SoundLabApp {
-  constructor(validator, converter, resultView, waveChart) {
+  constructor(validator, converter, resultView, waveChart, audioPlayer) {
     this.validator = validator;
     this.converter = converter;
     this.resultView = resultView;
     this.waveChart = waveChart;
+    this.audioPlayer = audioPlayer;
     this.convertButton = document.getElementById("convert-button");
+    this.playButton = document.getElementById("play-button");
   }
 
   start() {
     this.convertButton.addEventListener("click", () => this.convertWave());
+    this.playButton.addEventListener("click", () => this.playSound());
     this.resultView.showTestResults(this.converter);
   }
 
@@ -44,5 +47,28 @@ export default class SoundLabApp {
 
     this.resultView.showResults(inputs, results);
     this.waveChart.draw(results.samples);
+  }
+
+  // for audio
+  async playSound() {
+    const frequency = this.getInputs().frequency;
+
+    if (!this.validator.isValidNumber(frequency) || Number(frequency) <= 0) {
+      this.resultView.showError("Frequency must be greater than 0.");
+      return;
+    }
+
+    try {
+      const played = await this.audioPlayer.play(Number(frequency));
+
+      if (!played) {
+        this.resultView.showError("Sound is not supported in this browser.");
+        return;
+      }
+
+      this.resultView.clearError();
+    } catch {
+      this.resultView.showError("Sound could not play.");
+    }
   }
 }
