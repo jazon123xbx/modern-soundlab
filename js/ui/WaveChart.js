@@ -3,13 +3,15 @@ export default class WaveChart {
     this.canvas = document.getElementById("waveform-canvas");
     this.context = this.canvas.getContext("2d");
     this.samples = [];
+    this.amplitude = 0;
 
     window.addEventListener("resize", () => this.draw(this.samples));
   }
 
   // draw wave
-  draw(samples) {
+  draw(samples, amplitude = this.amplitude) {
     this.samples = samples;
+    this.amplitude = amplitude;
     const { width, height } = this.resizeCanvas();
 
     if (samples.length === 0) {
@@ -20,7 +22,6 @@ export default class WaveChart {
     const middle = height / 2;
     const graphWidth = width - padding * 2;
     const graphHeight = height - padding * 2;
-    const peak = Math.max(...samples.map((sample) => Math.abs(sample.amplitude)), 0.01);
 
     this.context.strokeStyle = "#285076";
     this.context.lineWidth = 1;
@@ -36,7 +37,7 @@ export default class WaveChart {
     for (let step = 0; step <= 200; step += 1) {
       const position = step / 200;
       const x = padding + position * graphWidth;
-      const y = middle - Math.sin(position * Math.PI * 2) * peak * (graphHeight / 2);
+      const y = middle - Math.sin(position * Math.PI * 2) * amplitude * (graphHeight / 2);
 
       if (step === 0) {
         this.context.moveTo(x, y);
@@ -46,7 +47,7 @@ export default class WaveChart {
     }
 
     this.context.stroke();
-    this.drawSamplePoints(samples, padding, middle, graphWidth, graphHeight, peak);
+    this.drawSamplePoints(samples, padding, middle, graphWidth, graphHeight);
   }
 
   clear() {
@@ -68,13 +69,13 @@ export default class WaveChart {
     return { width, height };
   }
 
-  drawSamplePoints(samples, padding, middle, graphWidth, graphHeight, peak) {
+  drawSamplePoints(samples, padding, middle, graphWidth, graphHeight) {
     this.context.fillStyle = "#3dd9ff";
 
     for (let index = 0; index < samples.length; index += 1) {
       const sample = samples[index];
       const x = padding + (index / samples.length) * graphWidth;
-      const y = middle - (sample.amplitude / peak) * (graphHeight / 2);
+      const y = middle - sample.amplitude * (graphHeight / 2);
 
       this.context.beginPath();
       this.context.arc(x, y, 4, 0, Math.PI * 2);

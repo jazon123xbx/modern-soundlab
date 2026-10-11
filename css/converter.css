@@ -9,18 +9,15 @@
   padding: 18px;
   border: 1px solid var(--border);
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 #converter-form legend {
   padding: 0 8px;
   color: var(--cyan);
   font-weight: bold;
-}
-
-#converter-form fieldset {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
 }
 
 #converter-form fieldset p {

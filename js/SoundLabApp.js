@@ -46,7 +46,7 @@ export default class SoundLabApp {
     const results = this.converter.convert(numbers);
 
     this.resultView.showResults(inputs, results);
-    this.waveChart.draw(results.samples);
+    this.waveChart.draw(results.samples, numbers.amplitude);
   }
 
   // for audio
