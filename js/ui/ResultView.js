@@ -21,7 +21,12 @@ export default class ResultView {
     this.sampleTimeCalculation = document.getElementById("sample-time-calculation");
     this.waveHeightCalculation = document.getElementById("wave-height-calculation");
     this.digitalLevelCalculation = document.getElementById("digital-level-calculation");
+    this.workedExampleIntro = document.getElementById("worked-example-intro");
+    this.calculationSamplesBody = document.getElementById("calculation-samples-body");
+    this.digitalLevelSequence = document.getElementById("digital-level-sequence");
     this.binaryCalculation = document.getElementById("binary-calculation");
+    this.binaryLevelSequence = document.getElementById("binary-level-sequence");
+    this.binarySequenceBody = document.getElementById("binary-sequence-body");
     this.simpleExplanation = document.getElementById("simple-explanation");
     this.testResultsBody = document.querySelector("#test-results tbody");
     this.calculationsTab = document.getElementById("calculations-tab");
@@ -143,6 +148,11 @@ export default class ResultView {
     const waveHeight = this.formatNumber(sample.amplitude);
     const bitsPerSample = Number(inputs.bitsPerSample);
     const paddingSample = this.getPaddingExample(results.samples, bitsPerSample);
+    const digitalLevels = results.samples.map((currentSample) => currentSample.digitalLevel).join(" ");
+    const shiftedHeight = sample.amplitude + 1;
+    const normalizedHeight = shiftedHeight / 2;
+    const highestLevel = results.numberOfLevels - 1;
+    const scaledLevel = normalizedHeight * highestLevel;
 
     this.frequencyInputExplanation.textContent = `Frequency: ${inputs.frequency} Hz. Hz means wave cycles per second, so the wave repeats ${inputs.frequency} times each second.`;
     this.amplitudeInputExplanation.textContent = `Amplitude: ${inputs.amplitude}. It is the relative wave height on this app's 0 to 1 scale, so it has no physical unit.`;
@@ -150,14 +160,18 @@ export default class ResultView {
     this.bitsInputExplanation.textContent = `Bits per sample: ${inputs.bitsPerSample}. Bits are binary digits, so each measured point uses ${inputs.bitsPerSample} zeros and ones.`;
     this.periodCalculation.textContent = `Period: 1000 / ${inputs.frequency} ≈ ${this.formatPeriod(results.periodInMilliseconds)} ms. The 1000 changes seconds into milliseconds.`;
     this.wavelengthCalculation.textContent = `Wavelength: 343 m/s / ${inputs.frequency} Hz ≈ ${wavelength}. The 343 m/s is the approximate speed of sound in air.`;
+    this.workedExampleIntro.textContent = `Worked formula example: sample 2 shows one point. The same sine and digital-level formulas run for all ${inputs.numberOfSamples} sample indexes in the table below.`;
     this.levelsCalculation.textContent = `Digital levels: 2 raised to ${inputs.bitsPerSample} = ${results.numberOfLevels}. The 2 comes from binary digits 0 and 1. This is how many whole-number levels the app can use.`;
     this.sampleTimeCalculation.textContent = `Sample 2 time: (1 x period) / ${inputs.numberOfSamples} ≈ ${sampleTime} ms. Sample 2 uses index 1 because counting starts at 0.`;
     this.waveHeightCalculation.textContent = `Sample 2 wave height: ${inputs.amplitude} x sin((2 x pi x ${sampleIndex}) / ${inputs.numberOfSamples}) ≈ ${waveHeight}. The input amplitude sets the height, and this result has no physical unit.`;
-    this.digitalLevelCalculation.textContent = `Sample 2 digital level: round(((unrounded wave height + 1) / 2) x (${results.numberOfLevels} - 1)) = ${sample.digitalLevel}.`;
+    this.showDigitalLevelSteps(sample, shiftedHeight, normalizedHeight, highestLevel, scaledLevel);
     this.totalBitsCalculation.textContent = `Total bits: ${inputs.numberOfSamples} x ${inputs.bitsPerSample} = ${results.totalBits} bits. This is the length of the complete binary sequence.`;
-    this.sampleCalculationIntro.textContent = `Sample ${sample.sampleNumber} has wave height ${waveHeight} and digital level ${sample.digitalLevel}. Divide the level by 2 until the quotient is 0.`;
+    this.digitalLevelSequence.textContent = `Complete digital-level sequence: ${digitalLevels}.`;
+    this.showGuideSampleTables(results.samples);
+    this.binaryLevelSequence.textContent = `Digital-level sequence in sample order: ${digitalLevels}.`;
+    this.sampleCalculationIntro.textContent = `Worked repeated-division example: sample ${sample.sampleNumber} has wave height ${waveHeight} and digital level ${sample.digitalLevel}. Divide this level by 2 until the quotient is 0.`;
     this.showBinaryDivisionSteps(sample, bitsPerSample, paddingSample);
-    this.binaryCalculation.textContent = `Final binary for sample ${sample.sampleNumber}: ${sample.binary}. All sample binaries join in sample order to make: ${results.binaryResult}. Total bits: ${inputs.numberOfSamples} x ${inputs.bitsPerSample} = ${results.totalBits}.`;
+    this.binaryCalculation.textContent = `Complete binary sequence: ${results.binaryResult}. The table lists the binary value for every sample. Total bits: ${inputs.numberOfSamples} x ${inputs.bitsPerSample} = ${results.totalBits}.`;
     this.simpleExplanation.textContent = `The app measures points from the wave, turns each point into a whole-number level, and writes that level in binary. More bits give more possible levels and more detail.`;
     this.selectGuideTab(0);
     this.calculationSection.hidden = false;
@@ -177,7 +191,12 @@ export default class ResultView {
     this.sampleTimeCalculation.textContent = "";
     this.waveHeightCalculation.textContent = "";
     this.digitalLevelCalculation.textContent = "";
+    this.workedExampleIntro.textContent = "";
+    this.calculationSamplesBody.replaceChildren();
+    this.digitalLevelSequence.textContent = "";
     this.binaryCalculation.textContent = "";
+    this.binaryLevelSequence.textContent = "";
+    this.binarySequenceBody.replaceChildren();
     this.binaryDivisionSteps.replaceChildren();
     this.binaryPaddingExplanation.textContent = "";
     this.simpleExplanation.textContent = "";
@@ -191,6 +210,65 @@ export default class ResultView {
       ?? samples.find(needsPadding)
       ?? samples.find((sample) => sample.digitalLevel === 0)
       ?? samples[0];
+  }
+
+  showDigitalLevelSteps(sample, shiftedHeight, normalizedHeight, highestLevel, scaledLevel) {
+    const waveHeight = this.formatCalculationNumber(sample.amplitude);
+    const shifted = this.formatCalculationNumber(shiftedHeight);
+    const normalized = this.formatCalculationNumber(normalizedHeight);
+    const scaled = this.formatNumber(scaledLevel);
+    const steps = [
+      `Wave height ≈ ${waveHeight}.`,
+      `Add 1: ${waveHeight} + 1 ≈ ${shifted}. This moves a negative-to-positive wave height into a positive range.`,
+      `Divide by 2: ${shifted} / 2 ≈ ${normalized}. This changes the range to 0 through 1.`,
+      `Highest level: ${highestLevel + 1} - 1 = ${highestLevel}.`,
+      `Multiply: ${normalized} x ${highestLevel} ≈ ${scaled}. This maps the value into the available digital levels.`,
+      `Round: round(${scaled}) = ${sample.digitalLevel}. This whole number is the digital level that Binary Steps changes into ${sample.binary}.`,
+    ];
+
+    this.digitalLevelCalculation.replaceChildren();
+    const list = document.createElement("ol");
+
+    for (const step of steps) {
+      const item = document.createElement("li");
+      item.textContent = step;
+      list.append(item);
+    }
+
+    this.digitalLevelCalculation.append(list);
+  }
+
+  showGuideSampleTables(samples) {
+    this.calculationSamplesBody.replaceChildren();
+    this.binarySequenceBody.replaceChildren();
+
+    for (const sample of samples) {
+      const calculationRow = document.createElement("tr");
+      const calculationValues = [
+        sample.sampleNumber,
+        this.formatNumber(sample.timeInMilliseconds),
+        this.formatNumber(sample.amplitude),
+        sample.digitalLevel,
+        sample.binary,
+      ];
+      const binaryRow = document.createElement("tr");
+      const binaryValues = [sample.sampleNumber, sample.digitalLevel, sample.binary];
+
+      for (const value of calculationValues) {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        calculationRow.append(cell);
+      }
+
+      for (const value of binaryValues) {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        binaryRow.append(cell);
+      }
+
+      this.calculationSamplesBody.append(calculationRow);
+      this.binarySequenceBody.append(binaryRow);
+    }
   }
 
   showBinaryDivisionSteps(sample, bitsPerSample, paddingSample) {
@@ -279,5 +357,9 @@ export default class ResultView {
 
   formatNumber(value) {
     return value.toFixed(2);
+  }
+
+  formatCalculationNumber(value) {
+    return value.toFixed(6);
   }
 }

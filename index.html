@@ -143,6 +143,7 @@
 
         <section class="calculation-group" aria-labelledby="sample-group-title">
           <h4 id="sample-group-title">Sample Calculation</h4>
+          <p id="worked-example-intro"></p>
           <ul>
             <li id="levels-calculation"></li>
             <li id="sample-time-calculation"></li>
@@ -151,11 +152,31 @@
           </ul>
         </section>
 
+        <section class="calculation-group" aria-labelledby="all-samples-title">
+          <h4 id="all-samples-title">All Calculated Samples</h4>
+          <div class="guide-table-wrap">
+            <table id="calculation-samples-table">
+              <caption>Every measured point from the wave</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sample</th>
+                  <th scope="col">Time (ms)</th>
+                  <th scope="col">Wave Height</th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Binary</th>
+                </tr>
+              </thead>
+              <tbody id="calculation-samples-body"></tbody>
+            </table>
+          </div>
+        </section>
+
         <section class="calculation-group" aria-labelledby="result-group-title">
           <h4 id="result-group-title">Final Result</h4>
           <ul>
             <li id="total-bits-calculation"></li>
           </ul>
+          <p id="digital-level-sequence"></p>
         </section>
 
         <h3>Simple Explanation</h3>
@@ -164,8 +185,9 @@
 
       <div id="binary-steps-panel" role="tabpanel" aria-labelledby="binary-steps-tab" hidden>
         <h3>Binary Steps</h3>
+        <p id="binary-level-sequence"></p>
         <p id="sample-calculation-intro"></p>
-        <div class="binary-division-table-wrap">
+        <div class="guide-table-wrap">
           <table id="binary-division-table">
             <caption>Repeated division by 2</caption>
             <thead>
@@ -179,6 +201,19 @@
           </table>
         </div>
         <p id="binary-padding-explanation"></p>
+        <div class="guide-table-wrap">
+          <table id="binary-sequence-table">
+            <caption>All samples in binary order</caption>
+            <thead>
+              <tr>
+                <th scope="col">Sample</th>
+                <th scope="col">Digital Level</th>
+                <th scope="col">Binary</th>
+              </tr>
+            </thead>
+            <tbody id="binary-sequence-body"></tbody>
+          </table>
+        </div>
         <p id="binary-calculation"></p>
       </div>
     </section>

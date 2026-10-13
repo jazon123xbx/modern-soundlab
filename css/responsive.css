@@ -59,7 +59,11 @@
   }
 
   #binary-division-table th,
-  #binary-division-table td {
+  #binary-division-table td,
+  #calculation-samples-table th,
+  #calculation-samples-table td,
+  #binary-sequence-table th,
+  #binary-sequence-table td {
     padding: 8px;
   }
 
