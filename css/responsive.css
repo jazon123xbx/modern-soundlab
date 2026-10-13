@@ -9,6 +9,7 @@
   #converter-section,
   #waveform-section,
   #binary-output-section,
+  #calculation-section,
   #sample-table-section,
   #test-results-section,
   #explain-section {
@@ -55,6 +56,11 @@
 
   #waveform-canvas {
     min-height: 150px;
+  }
+
+  #binary-division-table th,
+  #binary-division-table td {
+    padding: 8px;
   }
 
 }

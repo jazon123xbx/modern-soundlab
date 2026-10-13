@@ -82,7 +82,8 @@
 }
 
 #binary-output-section,
-#sample-table-section {
+#sample-table-section,
+#calculation-section {
   grid-column: 1 / -1;
 }
 
@@ -108,4 +109,100 @@
   margin: 0 0 6px;
   color: var(--text);
   font-size: 1rem;
+}
+
+/* calculation explanation */
+#calculation-section h3 {
+  margin: 22px 0 8px;
+  color: var(--cyan);
+  font-size: 1rem;
+}
+
+#calculation-section ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+#calculation-section li {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+
+#calculation-section p {
+  overflow-wrap: anywhere;
+}
+
+.calculation-group + .calculation-group {
+  margin-top: 20px;
+}
+
+.calculation-group h4 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.guide-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.guide-tabs [role="tab"] {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: var(--navy-950);
+  color: var(--muted-text);
+  cursor: pointer;
+}
+
+.guide-tabs [role="tab"][aria-selected="true"] {
+  background: var(--navy-800);
+  color: var(--cyan);
+  font-weight: bold;
+}
+
+.guide-tabs [role="tab"]:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.binary-division-table-wrap {
+  overflow-x: auto;
+}
+
+#binary-division-table {
+  width: 100%;
+  min-width: 320px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#binary-division-table caption {
+  margin-bottom: 12px;
+  text-align: left;
+  color: var(--muted-text);
+}
+
+#binary-division-table th,
+#binary-division-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+#binary-division-table th {
+  color: var(--cyan);
+  background: var(--navy-800);
+}
+
+#binary-padding-explanation,
+#binary-calculation {
+  margin-top: 12px;
 }

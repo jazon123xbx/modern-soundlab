@@ -113,6 +113,76 @@
       <p id="total-bits">Total Number of Bits: Waiting for conversion</p>
     </section>
 
+    <!-- calculation explanation -->
+    <section id="calculation-section" aria-labelledby="calculation-title" hidden>
+      <h2 id="calculation-title">How This Answer Was Calculated</h2>
+      <div class="guide-tabs" role="tablist" aria-label="Learning guide">
+        <button id="calculations-tab" type="button" role="tab" aria-selected="true" aria-controls="calculations-panel">Calculations</button>
+        <button id="binary-steps-tab" type="button" role="tab" aria-selected="false" aria-controls="binary-steps-panel" tabindex="-1">Binary Steps</button>
+      </div>
+
+      <div id="calculations-panel" role="tabpanel" aria-labelledby="calculations-tab">
+        <h3>Calculations</h3>
+        <section class="calculation-group" aria-labelledby="inputs-group-title">
+          <h4 id="inputs-group-title">Understanding Inputs</h4>
+          <ul>
+            <li id="frequency-input-explanation"></li>
+            <li id="amplitude-input-explanation"></li>
+            <li id="samples-input-explanation"></li>
+            <li id="bits-input-explanation"></li>
+          </ul>
+        </section>
+
+        <section class="calculation-group" aria-labelledby="measurements-group-title">
+          <h4 id="measurements-group-title">Wave Measurements</h4>
+          <ul>
+            <li id="period-calculation"></li>
+            <li id="wavelength-calculation"></li>
+          </ul>
+        </section>
+
+        <section class="calculation-group" aria-labelledby="sample-group-title">
+          <h4 id="sample-group-title">Sample Calculation</h4>
+          <ul>
+            <li id="levels-calculation"></li>
+            <li id="sample-time-calculation"></li>
+            <li id="wave-height-calculation"></li>
+            <li id="digital-level-calculation"></li>
+          </ul>
+        </section>
+
+        <section class="calculation-group" aria-labelledby="result-group-title">
+          <h4 id="result-group-title">Final Result</h4>
+          <ul>
+            <li id="total-bits-calculation"></li>
+          </ul>
+        </section>
+
+        <h3>Simple Explanation</h3>
+        <p id="simple-explanation"></p>
+      </div>
+
+      <div id="binary-steps-panel" role="tabpanel" aria-labelledby="binary-steps-tab" hidden>
+        <h3>Binary Steps</h3>
+        <p id="sample-calculation-intro"></p>
+        <div class="binary-division-table-wrap">
+          <table id="binary-division-table">
+            <caption>Repeated division by 2</caption>
+            <thead>
+              <tr>
+                <th scope="col">Division</th>
+                <th scope="col">Whole-Number Quotient</th>
+                <th scope="col">Remainder</th>
+              </tr>
+            </thead>
+            <tbody id="binary-division-steps"></tbody>
+          </table>
+        </div>
+        <p id="binary-padding-explanation"></p>
+        <p id="binary-calculation"></p>
+      </div>
+    </section>
+
     <!-- test results -->
     <section id="test-results-section" aria-labelledby="test-results-title">
       <h2 id="test-results-title">Test Results</h2>
